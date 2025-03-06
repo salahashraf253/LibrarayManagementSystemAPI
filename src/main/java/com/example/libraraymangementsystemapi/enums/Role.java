@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi;
+package com.example.libraraymangementsystemapi.enums;
 
 public enum Role {
     ADMIN, BORROWER
