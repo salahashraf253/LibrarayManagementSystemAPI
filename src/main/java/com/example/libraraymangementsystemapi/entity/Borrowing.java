@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.model;
+package com.example.libraraymangementsystemapi.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
