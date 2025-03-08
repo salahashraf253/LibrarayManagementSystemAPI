@@ -8,47 +8,47 @@ import com.example.libraraymangementsystemapi.dto.response.RegistrationResponse;
 import com.example.libraraymangementsystemapi.enums.Role;
 import com.example.libraraymangementsystemapi.service.AuthService;
 import com.example.libraraymangementsystemapi.service.RegistrationService;
+import com.example.libraraymangementsystemapi.util.ExtraDataUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-
     @Autowired
     private RegistrationService registrationService;
-
+    @Autowired
+    private ExtraDataUtil extraDataUtil;
     @Autowired
     private AuthService authService;
 
     @PostMapping("/register/borrower")
-    public ResponseEntity<ApiResponse<RegistrationResponse>> registerBorrower(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<ApiResponse<RegistrationResponse>> registerBorrower(
+            HttpServletRequest httpRequest,
+            @RequestParam(defaultValue = "false") boolean includeExtraData,
+            @RequestBody RegistrationRequest request) {
         request.setRole(Role.BORROWER);
-        RegistrationResponse response = registrationService.register(request);
-
-        ApiResponse<RegistrationResponse> apiResponse = new ApiResponse<>(HttpStatus.CREATED.value(), response);
-        return new ResponseEntity<>(apiResponse,HttpStatus.CREATED);
+        return extraDataUtil.buildResponse(httpRequest, includeExtraData, registrationService.register(request), HttpStatus.CREATED);
     }
 
     @PostMapping("/register/admin")
-    public ResponseEntity<ApiResponse<RegistrationResponse>> registerAdmin(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<ApiResponse<RegistrationResponse>> registerAdmin(
+            HttpServletRequest httpRequest,
+            @RequestParam(defaultValue = "false") boolean includeExtraData,
+            @RequestBody RegistrationRequest request) {
         request.setRole(Role.ADMIN);
-
-        RegistrationResponse response = registrationService.register(request);
-        ApiResponse<RegistrationResponse> apiResponse = new ApiResponse<>(HttpStatus.CREATED.value(), response);
-        return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
+        return extraDataUtil.buildResponse(httpRequest, includeExtraData, registrationService.register(request), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<LoginResponse>> login(@RequestBody LoginRequest request) {
-        LoginResponse response = authService.login(request);
-        ApiResponse<LoginResponse> apiResponse = new ApiResponse<>(HttpStatus.OK.value(), response);
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    public ResponseEntity<ApiResponse<LoginResponse>> login(
+            HttpServletRequest httpRequest,
+            @RequestParam(defaultValue = "false") boolean includeExtraData,
+            @RequestBody LoginRequest request) {
+        return extraDataUtil.buildResponse(httpRequest, includeExtraData, authService.login(request), HttpStatus.OK);
     }
 
 }
