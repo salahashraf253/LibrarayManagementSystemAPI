@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "books", indexes = {@Index(columnList = "ISBN"), @Index(name = "title_author_idx", columnList = "title, author")})
+@Table(name = "books", indexes = {@Index(columnList = "isbn"), @Index(name = "title_author_idx", columnList = "title, author")})
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -21,8 +21,8 @@ public class Book {
     @Column(nullable = false)
     private String author;
 
-    @Column(unique = true, nullable = false)
-    private String ISBN;
+    @Column(unique = true, nullable = false,name = "isbn")
+    private String isbn;
 
     @Column(nullable = false)
     private String shelfLocation;
@@ -33,7 +33,7 @@ public class Book {
     public Book(String title,String author,String ISBN,String shelfLocation,int quantity){
         this.title=title;
         this.author=author;
-        this.ISBN=ISBN;
+        this.isbn =ISBN;
         this.shelfLocation=shelfLocation;
         this.quantity=quantity;
     }

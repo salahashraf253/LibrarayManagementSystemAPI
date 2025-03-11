@@ -8,7 +8,7 @@ import lombok.Getter;
 public class BookRequest {
     private String title;
     private String author;
-    private String ISBN;
+    private String isbn;
     private String shelfLocation;
     private int quantity;
 }
