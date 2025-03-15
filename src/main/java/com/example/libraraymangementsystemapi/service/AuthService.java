@@ -35,16 +35,19 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String token = jwtUtil.generateToken(userDetails);
 
         Role role;
+        Long id;
         if (adminRepository.findByEmail(request.getEmail()).isPresent()) {
             role = Role.ADMIN;
+            id = adminRepository.findIdByEmail(request.getEmail());
         } else if (borrowerRepository.findByEmail(request.getEmail()).isPresent()) {
             role = Role.BORROWER;
+            id = adminRepository.findIdByEmail(request.getEmail());
         } else {
             throw new RuntimeException("User not found");
         }
+        String token = jwtUtil.generateToken(userDetails,id);
         return new LoginResponse(token, role);
     }
 }

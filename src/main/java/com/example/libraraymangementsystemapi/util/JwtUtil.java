@@ -19,8 +19,9 @@ public class JwtUtil {
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private static final long EXPIRATION_TIME = 86400000; // 24 hours
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails,Long userId) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("userId",userId);
         return createToken(claims, userDetails.getUsername());
     }
 
@@ -62,5 +63,9 @@ public class JwtUtil {
 
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
+    }
+
+    public Long extractUserId(String token){
+        return extractClaim(token,claims -> claims.get("userId",Long.class));
     }
 }
