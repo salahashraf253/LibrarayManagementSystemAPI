@@ -6,7 +6,7 @@ import com.example.libraraymangementsystemapi.entity.Book;
 
 public class BookMapper {
     public static BookResponse sourceToDestination(Book book) {
-        return new BookResponse(book.getTitle(), book.getAuthor(),
+        return new BookResponse(book.getId(),book.getTitle(), book.getAuthor(),
                 book.getIsbn(), book.getShelfLocation(),
                 book.getQuantity());
     }

@@ -1,12 +1,14 @@
 package com.example.libraraymangementsystemapi.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "books", indexes = {@Index(columnList = "isbn"), @Index(name = "title_author_idx", columnList = "title, author")})
