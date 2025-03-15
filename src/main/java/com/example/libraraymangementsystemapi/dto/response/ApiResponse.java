@@ -9,4 +9,9 @@ public class ApiResponse<T>{
     private int statusCode;
     private T data;
     private ExtraData extraData;
+
+    public ApiResponse(int statusCode,T data){
+        this.statusCode=statusCode;
+        this.data=data;
+    }
 }
