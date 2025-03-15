@@ -1,5 +1,6 @@
 package com.example.libraraymangementsystemapi.service;
 
+import com.example.libraraymangementsystemapi.Mappers.UserMapper;
 import com.example.libraraymangementsystemapi.dto.request.RegistrationRequest;
 import com.example.libraraymangementsystemapi.dto.response.RegistrationResponse;
 import com.example.libraraymangementsystemapi.entity.Admin;
@@ -22,45 +23,24 @@ public class RegistrationService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    UserMapper userMapper;
 
     public RegistrationResponse register(RegistrationRequest request) {
         if (adminRepository.existsByEmail(request.getEmail()) || borrowerRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
         if (request.getRole() == Role.ADMIN) {
-            Admin admin = new Admin();
-            admin.setFirstName(request.getFirstName());
-            admin.setLastName(request.getLastName());
-            admin.setEmail(request.getEmail());
-            admin.setPassword(passwordEncoder.encode(request.getPassword()));
-            admin.setRole(request.getRole());
-
+            Admin admin = (Admin) userMapper.destinationToSource(request);
             Admin savedAdmin = adminRepository.save(admin);
 
-            return new RegistrationResponse(
-                    savedAdmin.getId(),
-                    savedAdmin.getFirstName(),
-                    savedAdmin.getLastName(),
-                    savedAdmin.getEmail(),
-                    savedAdmin.getRole()
-            );
+            return userMapper.sourceToDestination(savedAdmin);
         } else if (request.getRole() == Role.BORROWER) {
-            Borrower borrower = new Borrower();
-            borrower.setFirstName(request.getFirstName());
-            borrower.setLastName(request.getLastName());
-            borrower.setEmail(request.getEmail());
-            borrower.setPassword(passwordEncoder.encode(request.getPassword()));
-            borrower.setRole(request.getRole());
+            Borrower borrower = (Borrower) userMapper.destinationToSource(request);
 
             Borrower savedBorrower = borrowerRepository.save(borrower);
 
-            return new RegistrationResponse(
-                    savedBorrower.getId(),
-                    savedBorrower.getFirstName(),
-                    savedBorrower.getLastName(),
-                    savedBorrower.getEmail(),
-                    savedBorrower.getRole()
-            );
+            return userMapper.sourceToDestination(savedBorrower);
         } else {
             throw new RuntimeException("Invalid role");
         }
