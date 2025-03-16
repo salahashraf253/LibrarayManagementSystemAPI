@@ -43,7 +43,7 @@ public class AuthService {
             id = adminRepository.findIdByEmail(request.getEmail());
         } else if (borrowerRepository.findByEmail(request.getEmail()).isPresent()) {
             role = Role.BORROWER;
-            id = adminRepository.findIdByEmail(request.getEmail());
+            id = borrowerRepository.findIdByEmail(request.getEmail());
         } else {
             throw new RuntimeException("User not found");
         }
