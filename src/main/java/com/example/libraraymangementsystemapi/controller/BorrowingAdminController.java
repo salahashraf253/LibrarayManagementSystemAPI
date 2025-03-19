@@ -7,7 +7,6 @@ import com.example.libraraymangementsystemapi.service.BorrowingService;
 import com.example.libraraymangementsystemapi.util.ExtraDataUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
