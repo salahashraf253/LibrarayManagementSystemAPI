@@ -1,6 +1,6 @@
 package com.example.libraraymangementsystemapi.service;
 
-import com.example.libraraymangementsystemapi.Mappers.BorrowingMapper;
+import com.example.libraraymangementsystemapi.mappers.BorrowingMapper;
 import com.example.libraraymangementsystemapi.dto.request.BorrowingFetchRequest;
 import com.example.libraraymangementsystemapi.dto.request.CheckoutRequest;
 import com.example.libraraymangementsystemapi.dto.request.ReturnBookRequest;
@@ -11,7 +11,7 @@ import com.example.libraraymangementsystemapi.dto.response.ReturnBookResponse;
 import com.example.libraraymangementsystemapi.entity.Book;
 import com.example.libraraymangementsystemapi.entity.Borrower;
 import com.example.libraraymangementsystemapi.entity.Borrowing;
-import com.example.libraraymangementsystemapi.entity.EmbeddedIds.BorrowingId;
+import com.example.libraraymangementsystemapi.entity.embeddedId.BorrowingId;
 import com.example.libraraymangementsystemapi.repository.BookRepository;
 import com.example.libraraymangementsystemapi.repository.BorrowerRepository;
 import com.example.libraraymangementsystemapi.repository.BorrowingRepository;

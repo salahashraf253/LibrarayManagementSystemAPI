@@ -1,6 +1,6 @@
 package com.example.libraraymangementsystemapi.service;
 
-import com.example.libraraymangementsystemapi.Mappers.BookMapper;
+import com.example.libraraymangementsystemapi.mappers.BookMapper;
 import com.example.libraraymangementsystemapi.dto.request.BookFetchRequest;
 import com.example.libraraymangementsystemapi.dto.request.BookRequest;
 import com.example.libraraymangementsystemapi.dto.response.BookFetchResponse;
