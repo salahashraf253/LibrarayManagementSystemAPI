@@ -1,14 +1,13 @@
-package com.example.libraraymangementsystemapi.Factories;
+package com.example.libraraymangementsystemapi.factories;
 
 import com.example.libraraymangementsystemapi.enums.Role;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
 @Component
 public class UserFactoryProvider {
-    @Autowired
     private AdminFactory adminFactory;
-    @Autowired
     private BorrowerFactory borrowerFactory;
     public UserFactory getUserFactory(Role role) {
         switch (role) {

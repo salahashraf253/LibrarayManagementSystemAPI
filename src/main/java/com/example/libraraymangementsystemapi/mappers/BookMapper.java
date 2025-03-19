@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.Mappers;
+package com.example.libraraymangementsystemapi.mappers;
 
 import com.example.libraraymangementsystemapi.dto.request.BookRequest;
 import com.example.libraraymangementsystemapi.dto.response.BookResponse;

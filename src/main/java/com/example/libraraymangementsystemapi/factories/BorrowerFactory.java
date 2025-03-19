@@ -1,19 +1,18 @@
-package com.example.libraraymangementsystemapi.Factories;
+package com.example.libraraymangementsystemapi.factories;
 
 import com.example.libraraymangementsystemapi.dto.request.RegistrationRequest;
-import com.example.libraraymangementsystemapi.entity.Admin;
+import com.example.libraraymangementsystemapi.entity.Borrower;
 import com.example.libraraymangementsystemapi.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
+@AllArgsConstructor
 @Component
-public class AdminFactory implements UserFactory{
-    @Autowired
+public class BorrowerFactory implements UserFactory {
     private PasswordEncoder passwordEncoder;
     @Override
     public User createUser(RegistrationRequest registrationRequest) {
-        return new Admin(
+        return new Borrower(
                 registrationRequest.getFirstName(),
                 registrationRequest.getLastName(),
                 registrationRequest.getEmail(),

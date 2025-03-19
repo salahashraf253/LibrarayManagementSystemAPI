@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.config.RateLimit;
+package com.example.libraraymangementsystemapi.config.rateLimit;
 
 import org.springframework.stereotype.Component;
 

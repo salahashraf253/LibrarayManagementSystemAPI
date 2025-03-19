@@ -1,7 +1,7 @@
 package com.example.libraraymangementsystemapi.controller;
 
 import com.example.libraraymangementsystemapi.Resolvers.Token;
-import com.example.libraraymangementsystemapi.config.RateLimit.RateLimited;
+import com.example.libraraymangementsystemapi.config.rateLimit.RateLimited;
 import com.example.libraraymangementsystemapi.dto.request.BorrowingFetchRequest;
 import com.example.libraraymangementsystemapi.dto.request.CheckoutRequest;
 import com.example.libraraymangementsystemapi.dto.request.ReturnBookRequest;

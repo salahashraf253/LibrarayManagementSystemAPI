@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.config.RateLimit;
+package com.example.libraraymangementsystemapi.config.rateLimit;
 
 import com.example.libraraymangementsystemapi.exception.RateLimitExceededException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.Factories;
+package com.example.libraraymangementsystemapi.factories;
 
 import com.example.libraraymangementsystemapi.dto.request.RegistrationRequest;
 import com.example.libraraymangementsystemapi.entity.User;
