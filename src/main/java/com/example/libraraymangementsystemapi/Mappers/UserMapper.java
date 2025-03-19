@@ -5,12 +5,13 @@ import com.example.libraraymangementsystemapi.factories.UserFactoryProvider;
 import com.example.libraraymangementsystemapi.dto.request.RegistrationRequest;
 import com.example.libraraymangementsystemapi.dto.response.RegistrationResponse;
 import com.example.libraraymangementsystemapi.entity.User;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class UserMapper {
-    @Autowired
     private UserFactoryProvider userFactoryProvider;
 
     public RegistrationResponse sourceToDestination(User user) {
