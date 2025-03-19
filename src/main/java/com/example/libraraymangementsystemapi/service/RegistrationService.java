@@ -6,29 +6,25 @@ import com.example.libraraymangementsystemapi.dto.response.RegistrationResponse;
 import com.example.libraraymangementsystemapi.entity.Admin;
 import com.example.libraraymangementsystemapi.entity.Borrower;
 import com.example.libraraymangementsystemapi.enums.Role;
+import com.example.libraraymangementsystemapi.exception.EmailAlreadyExistsException;
+import com.example.libraraymangementsystemapi.exception.InvalidRoleException;
 import com.example.libraraymangementsystemapi.repository.AdminRepository;
 import com.example.libraraymangementsystemapi.repository.BorrowerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class RegistrationService {
 
-    @Autowired
     private AdminRepository adminRepository;
 
-    @Autowired
     private BorrowerRepository borrowerRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
     UserMapper userMapper;
 
     public RegistrationResponse register(RegistrationRequest request) {
         if (adminRepository.existsByEmail(request.getEmail()) || borrowerRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new EmailAlreadyExistsException("Email already exists");
         }
         if (request.getRole() == Role.ADMIN) {
             Admin admin = (Admin) userMapper.destinationToSource(request);
@@ -42,7 +38,7 @@ public class RegistrationService {
 
             return userMapper.sourceToDestination(savedBorrower);
         } else {
-            throw new RuntimeException("Invalid role");
+            throw new InvalidRoleException("Invalid role");
         }
     }
 }
