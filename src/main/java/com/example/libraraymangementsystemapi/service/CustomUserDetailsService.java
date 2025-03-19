@@ -4,7 +4,7 @@ import com.example.libraraymangementsystemapi.entity.Admin;
 import com.example.libraraymangementsystemapi.entity.Borrower;
 import com.example.libraraymangementsystemapi.repository.AdminRepository;
 import com.example.libraraymangementsystemapi.repository.BorrowerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,12 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
     private AdminRepository adminRepository;
 
-    @Autowired
     private BorrowerRepository borrowerRepository;
 
     @Override

@@ -9,7 +9,7 @@ import com.example.libraraymangementsystemapi.dto.response.PaginationData;
 import com.example.libraraymangementsystemapi.entity.Book;
 import com.example.libraraymangementsystemapi.repository.BookRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class BookService {
-    @Autowired
     private BookRepository bookRepository;
-    @Autowired
     private PaginationService paginationService;
 
     private Book findBookById(Long id) {
