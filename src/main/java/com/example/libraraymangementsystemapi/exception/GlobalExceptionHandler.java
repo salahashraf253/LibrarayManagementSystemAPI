@@ -64,12 +64,16 @@ public class GlobalExceptionHandler {
         ApiResponse<String> response = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(RateLimitExceededException.class)
+    public ResponseEntity<ApiResponse<String>> handleRateLimitExceededExpection(RateLimitExceededException ex){
+        ApiResponse<String> response = new ApiResponse<>(HttpStatus.TOO_MANY_REQUESTS.value(), ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<String>> handleGlobalException(Exception ex, WebRequest request) {
         ApiResponse<String> response = new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
 }
