@@ -1,5 +1,6 @@
 package com.example.libraraymangementsystemapi.controller;
 
+import com.example.libraraymangementsystemapi.config.RateLimit.RateLimited;
 import com.example.libraraymangementsystemapi.dto.request.BookFetchRequest;
 import com.example.libraraymangementsystemapi.dto.request.BookRequest;
 import com.example.libraraymangementsystemapi.dto.response.ApiResponse;
@@ -24,6 +25,7 @@ public class BookController {
     private BookService bookService;
     private ExtraDataUtil extraDataUtil;
 
+    @RateLimited
     @GetMapping()
     public ResponseEntity<ApiResponse<BookFetchResponse>> fetchBooks(
             HttpServletRequest httpRequest,

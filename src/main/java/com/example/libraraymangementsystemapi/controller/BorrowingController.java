@@ -1,6 +1,7 @@
 package com.example.libraraymangementsystemapi.controller;
 
 import com.example.libraraymangementsystemapi.Resolvers.Token;
+import com.example.libraraymangementsystemapi.config.RateLimit.RateLimited;
 import com.example.libraraymangementsystemapi.dto.request.BorrowingFetchRequest;
 import com.example.libraraymangementsystemapi.dto.request.CheckoutRequest;
 import com.example.libraraymangementsystemapi.dto.request.ReturnBookRequest;
@@ -28,6 +29,7 @@ public class BorrowingController {
     private ExtraDataUtil extraDataUtil;
     private BorrowingService borrowingService;
 
+    @RateLimited
     @GetMapping("/")
     public ResponseEntity<ApiResponse<BorrowingFetchResponse>> getBorrowedBooksByBorrowerId(
             @Token String token, HttpServletRequest httpRequest,
