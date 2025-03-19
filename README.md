@@ -86,7 +86,7 @@
 
 Example Usage:
 ```java
- @RateLimited
+    @RateLimited
     @GetMapping()
     public ResponseEntity<ApiResponse<BookFetchResponse>> fetchBooks(
             HttpServletRequest httpRequest,
