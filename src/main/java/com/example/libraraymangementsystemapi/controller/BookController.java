@@ -1,6 +1,6 @@
 package com.example.libraraymangementsystemapi.controller;
 
-import com.example.libraraymangementsystemapi.config.RateLimit.RateLimited;
+import com.example.libraraymangementsystemapi.config.rateLimit.RateLimited;
 import com.example.libraraymangementsystemapi.dto.request.BookFetchRequest;
 import com.example.libraraymangementsystemapi.dto.request.BookRequest;
 import com.example.libraraymangementsystemapi.dto.response.ApiResponse;
@@ -11,7 +11,6 @@ import com.example.libraraymangementsystemapi.service.BookService;
 import com.example.libraraymangementsystemapi.util.ExtraDataUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
