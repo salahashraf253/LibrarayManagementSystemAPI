@@ -12,6 +12,7 @@
 - Code Quality & Analysis (SonarQube)
 - Rate Limiting (Prevent excessive API requests)
 - Extra Data in API Responses (Optional metadata for debugging & analytics)
+- Swagger API Documentation (Interactive API exploration)
 
 
 ## API Documentation
@@ -74,6 +75,7 @@
   <li>MySQL (Database)</li>
   <li>Lombok (Reduces Boilerplate Code)</li>
   <li>SonarQube (Static Code Analysis & Quality Assurance)</li>
+<li>Swagger UI (API Documentation & Testing)</li>
 </ul>
 
 ### Rate Limiting
@@ -114,6 +116,16 @@ This project includes an Extra Data Utility that allows API responses to include
     <li>User-Agent</li>
   </ul>
   </li>
+
+  ### Swagger API Documentation
+  Swagger UI is available for interactive API testing and documentation.
+  #### Acessing Swagger UI
+  - Open a browser and navigate to:
+    `http://localhost:8080/swagger-ui.html`
+  - Explore and test API endpoints directly from the interface.
+  - OpenAPI JSON documentation can be accessed at:
+    `http://localhost:8080/v3/api-docs`
+    
 <!-- </ul> -->
 Example Response with Extra Data:
 
