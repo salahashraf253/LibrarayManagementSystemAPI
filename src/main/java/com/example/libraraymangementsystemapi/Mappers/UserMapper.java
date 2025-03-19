@@ -1,7 +1,7 @@
 package com.example.libraraymangementsystemapi.Mappers;
 
-import com.example.libraraymangementsystemapi.Factories.UserFactory;
-import com.example.libraraymangementsystemapi.Factories.UserFactoryProvider;
+import com.example.libraraymangementsystemapi.factories.UserFactory;
+import com.example.libraraymangementsystemapi.factories.UserFactoryProvider;
 import com.example.libraraymangementsystemapi.dto.request.RegistrationRequest;
 import com.example.libraraymangementsystemapi.dto.response.RegistrationResponse;
 import com.example.libraraymangementsystemapi.entity.User;
