@@ -3,6 +3,7 @@ package com.example.libraraymangementsystemapi.entity;
 import com.example.libraraymangementsystemapi.entity.EmbeddedIds.BorrowingId;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "borrowings")
+@NoArgsConstructor
 public class Borrowing {
     @EmbeddedId
     private BorrowingId id;
@@ -29,4 +31,11 @@ public class Borrowing {
     private LocalDateTime dueDate;
 
     private LocalDateTime returnDate;
+
+    public Borrowing(BorrowingId borrowingId, Book book, Borrower borrower, LocalDateTime returnDate) {
+        this.id = borrowingId;
+        this.book = book;
+        this.borrower = borrower;
+        this.returnDate = returnDate;
+    }
 }
