@@ -49,13 +49,13 @@ public class ReportExportService {
 
     private void writeCSV(List<BorrowingResponse> records, OutputStream outputStream) throws IOException {
         try (CSVPrinter printer = new CSVPrinter(new OutputStreamWriter(outputStream), CSVFormat.DEFAULT.withHeader("Borrower ID", "Book ID", "Checkout Date", "Due Date", "Return Date"))) {
-            for (BorrowingResponse record : records) {
+            for (BorrowingResponse borrowingResponse : records) {
                 printer.printRecord(
-                        record.getBorrowerId(),
-                        record.getBookId(),
-                        record.getCheckoutDate(),
-                        record.getDueDate(),
-                        record.getReturnDate() != null ? record.getReturnDate() : "Not Returned"
+                        borrowingResponse.getBorrowerId(),
+                        borrowingResponse.getBookId(),
+                        borrowingResponse.getCheckoutDate(),
+                        borrowingResponse.getDueDate(),
+                        borrowingResponse.getReturnDate() != null ? borrowingResponse.getReturnDate() : "Not Returned"
                 );
             }
         }
@@ -72,13 +72,13 @@ public class ReportExportService {
             }
 
             int rowNum = 1;
-            for (BorrowingResponse record : records) {
+            for (BorrowingResponse borrowingResponse : records) {
                 Row row = sheet.createRow(rowNum++);
-                row.createCell(0).setCellValue(record.getBorrowerId());
-                row.createCell(1).setCellValue(record.getBookId());
-                row.createCell(2).setCellValue(record.getCheckoutDate().toString());
-                row.createCell(3).setCellValue(record.getDueDate().toString());
-                row.createCell(4).setCellValue(record.getReturnDate() != null ? record.getReturnDate().toString() : "Not Returned");
+                row.createCell(0).setCellValue(borrowingResponse.getBorrowerId());
+                row.createCell(1).setCellValue(borrowingResponse.getBookId());
+                row.createCell(2).setCellValue(borrowingResponse.getCheckoutDate().toString());
+                row.createCell(3).setCellValue(borrowingResponse.getDueDate().toString());
+                row.createCell(4).setCellValue(borrowingResponse.getReturnDate() != null ? borrowingResponse.getReturnDate().toString() : "Not Returned");
             }
 
             workbook.write(outputStream);
