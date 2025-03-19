@@ -60,7 +60,7 @@
 #### Borrowing Reports API (For Admins)
 
 | HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
+| ---- | --- | --- |
 | GET | ```/api/borrowings/overdue``` | Get overdue books |
 | GET | ```/api/borrowings/active``` | Get active borrowings |
 | GET | ```/api/borrowings/active/{borroerId}``` | Get active borrowings by borrower ID |
