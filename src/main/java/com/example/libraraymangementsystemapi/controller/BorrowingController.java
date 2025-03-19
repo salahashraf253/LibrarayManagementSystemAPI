@@ -7,6 +7,7 @@ import com.example.libraraymangementsystemapi.dto.request.ReturnBookRequest;
 import com.example.libraraymangementsystemapi.dto.response.ApiResponse;
 import com.example.libraraymangementsystemapi.dto.response.BorrowingFetchResponse;
 import com.example.libraraymangementsystemapi.dto.response.BorrowingResponse;
+import com.example.libraraymangementsystemapi.dto.response.ReturnBookResponse;
 import com.example.libraraymangementsystemapi.entity.Borrowing;
 import com.example.libraraymangementsystemapi.service.BorrowingService;
 import com.example.libraraymangementsystemapi.util.ExtraDataUtil;
@@ -55,7 +56,7 @@ public class BorrowingController {
     }
 
     @PostMapping("/return")
-    public ResponseEntity<ApiResponse<?>> returnBook(
+    public ResponseEntity<ApiResponse<ReturnBookResponse>> returnBook(
             @Token String token,
             @RequestBody ReturnBookRequest returnBookRequest
     ) {
@@ -63,7 +64,7 @@ public class BorrowingController {
         if (!userId.equals(returnBookRequest.getBorrowerId())) {
             throw new AccessDeniedException("You are not authorized to perform this action");
         }
-        Borrowing borrowing = borrowingService.returnBook(returnBookRequest);
-        return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), borrowing));
+        ReturnBookResponse response = borrowingService.returnBook(returnBookRequest);
+        return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), response));
     }
 }

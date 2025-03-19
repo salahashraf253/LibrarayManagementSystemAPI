@@ -7,6 +7,7 @@ import com.example.libraraymangementsystemapi.dto.request.ReturnBookRequest;
 import com.example.libraraymangementsystemapi.dto.response.BorrowingFetchResponse;
 import com.example.libraraymangementsystemapi.dto.response.BorrowingResponse;
 import com.example.libraraymangementsystemapi.dto.response.PaginationData;
+import com.example.libraraymangementsystemapi.dto.response.ReturnBookResponse;
 import com.example.libraraymangementsystemapi.entity.Book;
 import com.example.libraraymangementsystemapi.entity.Borrower;
 import com.example.libraraymangementsystemapi.entity.Borrowing;
@@ -43,7 +44,10 @@ public class BorrowingService {
                 .orElseThrow(() -> new IllegalArgumentException("Book not found"));
         Borrower borrower = borrowerRepository.findById(request.getBorrowerId())
                 .orElseThrow(() -> new IllegalArgumentException("Borrower not found"));
-
+        Borrowing borrowing = borrowingRepository.findByBookIdAndBorrowerId(book.getId(), borrower.getId());
+        if(borrowing != null){
+            throw  new IllegalStateException("You already have borrowed this book and didn't return it");
+        }
         if (book.getQuantity() <= 0) {
             throw new IllegalStateException("Book is out of stock");
         }
@@ -51,22 +55,32 @@ public class BorrowingService {
         book.setQuantity(book.getQuantity() - 1);
         bookRepository.save(book);
 
-        Borrowing borrowing = new Borrowing(new BorrowingId(request.getBookId(), request.getBorrowerId()), book, borrower, request.getReturnDate());
+        borrowing = new Borrowing(new BorrowingId(request.getBookId(), request.getBorrowerId()), book, borrower, request.getDueDate());
         borrowingRepository.save(borrowing);
 
         return borrowingMapper.sourceToDestination(borrowing);
     }
 
     @Transactional
-    public Borrowing returnBook(ReturnBookRequest request) {
+    public ReturnBookResponse returnBook(ReturnBookRequest request) {
         Book book = bookRepository.findById(request.getBookId())
                 .orElseThrow(() -> new IllegalArgumentException("Book not found"));
+        book.setQuantity(book.getQuantity()+1);
+        book=bookRepository.save(book);
+
         Borrower borrower = borrowerRepository.findById(request.getBorrowerId())
                 .orElseThrow(() -> new IllegalArgumentException("Borrower not found"));
 
         Borrowing borrowing = borrowingRepository.findByBookIdAndBorrowerId(book.getId(), borrower.getId());
         borrowing.setReturnDate(LocalDateTime.now());
-        return borrowingRepository.save(borrowing);
+        borrowing=borrowingRepository.save(borrowing);
+        return new ReturnBookResponse(
+                borrowing.getId().getBorrowerId(),
+                borrowing.getId().getBookId(),
+                borrowing.getId().getCheckoutDate(),
+                borrowing.getDueDate(),
+                borrowing.getReturnDate()
+        );
     }
 
     public BorrowingFetchResponse getOverdueBooks(BorrowingFetchRequest request) {

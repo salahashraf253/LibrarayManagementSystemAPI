@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BorrowingRepository extends JpaRepository<Borrowing, BorrowingId> {
 
-    @Query("SELECT b FROM Borrowing b WHERE   b.book.id = :bookId AND b.borrower.id = :borrowerId")
+    @Query("SELECT b FROM Borrowing b WHERE   b.book.id = :bookId AND b.borrower.id = :borrowerId AND b.returnDate IS NULL")
     Borrowing findByBookIdAndBorrowerId(Long bookId, Long borrowerId);
 
     @Query("SELECT b FROM Borrowing b WHERE b.id.borrowerId = :borrowerId")

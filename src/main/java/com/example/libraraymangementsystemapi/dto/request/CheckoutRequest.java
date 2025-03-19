@@ -8,5 +8,5 @@ import java.time.LocalDateTime;
 public class CheckoutRequest {
     private Long borrowerId;
     private Long bookId;
-    private LocalDateTime returnDate;
+    private LocalDateTime dueDate;
 }

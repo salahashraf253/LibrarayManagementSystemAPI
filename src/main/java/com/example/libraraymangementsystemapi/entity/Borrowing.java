@@ -32,10 +32,10 @@ public class Borrowing {
 
     private LocalDateTime returnDate;
 
-    public Borrowing(BorrowingId borrowingId, Book book, Borrower borrower, LocalDateTime returnDate) {
+    public Borrowing(BorrowingId borrowingId, Book book, Borrower borrower, LocalDateTime dueDate) {
         this.id = borrowingId;
         this.book = book;
         this.borrower = borrower;
-        this.returnDate = returnDate;
+        this.dueDate = dueDate;
     }
 }
