@@ -1,19 +1,18 @@
 # Library Management System API
 ## Introduction
-<h3>This is a RESTful API for a Library Management System built using Spring Boot. It allows users to register as borrowers or admins and perform actions related to book management and borrowing. </h3>
+### This is a RESTful API for a Library Management System built using Spring Boot. It allows users to register as borrowers or admins and perform actions related to book management and borrowing. 
 
 ## Features
 
-<ul>
-  <li>Authentication & Authorization (JWT-based Security)</li>
-  <li>Role-based Access Control (Admin vs. Borrower Permissions)</li>
-  <li>Book Management (Admin only)</li>
-  <li>Borrowing System (Checkout/Return Books)</li>
-  <li>Borrowing Reports (Admin only)</li>
-  <li>Code Quality & Analysis (SonarQube)</li>
-  <li>Rate Limiting (Prevent excessive API requests)</li>
-  <li>Extra Data in API Responses (Optional metadata for debugging & analytics)</li>
-</ul>
+- Authentication & Authorization (JWT-based Security)
+- Role-based Access Control (Admin vs. Borrower Permissions)
+- Book Management (Admin only)
+- Borrowing System (Checkout/Return Books)
+- Borrowing Reports (Admin only)
+- Code Quality & Analysis (SonarQube)
+- Rate Limiting (Prevent excessive API requests)
+- Extra Data in API Responses (Optional metadata for debugging & analytics)
+
 
 ## API Documentation
 
@@ -27,17 +26,16 @@
 | POST | ```/api/auth/register/admin```    | Register a new admin |
 | POST | ```/api/auth/login``` | Login as an admin or borrower |
 
-<h5>Authentication Details</h5>
-<ul>
-  <li>Upon successful login, users receive a JWT Token.</li>
-  <li>The token must be included in the Authorization header as a Bearer Token in subsequent requests.</li>
-  <li>Example<br>
-    
-    Authorization: Bearer your-jwt-token
+##### Authentication Details
+- Upon successful login, users receive a JWT Token.
+- The token must be included in the Authorization header as a Bearer Token in subsequent requests.
+- Example:
+    `
+   Authorization: Bearer your-jwt-token`
   
-  </li>
-  <li>Endpoints marked as Admin only require an admin role to access.</li>
-</ul>
+  
+- Endpoints marked as Admin only require an admin role to access.</li>
+
 
 #### Books API
 
@@ -101,11 +99,11 @@ Example Usage:
 
 ### Extra Data in API Responses
 
-<p>This project includes an Extra Data Utility that allows API responses to include additional metadata when requested.</p>
-<h5>How it Works</h5>
-<ul>
-  <li>Users can pass ```?includeExtraData=true``` in API requests</li>
-  <li>Extra metadata includes:
+This project includes an Extra Data Utility that allows API responses to include additional metadata when requested.
+##### How it Works
+<!-- <ul> -->
+- Users can pass `?includeExtraData=true` in API requests 
+- Extra metadata includes:
   <ul>
     <li>TImestamp</li>
     <li>Response size</li>
@@ -116,7 +114,7 @@ Example Usage:
     <li>User-Agent</li>
   </ul>
   </li>
-</ul>
+<!-- </ul> -->
 Example Response with Extra Data:
 
 ```json
