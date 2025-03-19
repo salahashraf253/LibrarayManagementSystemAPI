@@ -2,6 +2,7 @@ package com.example.libraraymangementsystemapi.config;
 
 import com.example.libraraymangementsystemapi.enums.Role;
 import com.example.libraraymangementsystemapi.filter.JwtAuthenticationFilter;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
