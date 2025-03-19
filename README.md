@@ -10,6 +10,9 @@
   <li>Book Management (Admin only)</li>
   <li>Borrowing System (Checkout/Return Books)</li>
   <li>Borrowing Reports (Admin only)</li>
+  <li>Code Quality & Analysis (SonarQube)</li>
+  <li>Rate Limiting (Prevent excessive API requests)</li>
+  <li>Extra Data in API Responses (Optional metadata for debugging & analytics)</li>
 </ul>
 
 ## API Documentation
@@ -74,3 +77,65 @@
   <li>Lombok (Reduces Boilerplate Code)</li>
   <li>SonarQube (Static Code Analysis & Quality Assurance)</li>
 </ul>
+
+### Rate Limiting
+
+<p>
+  This project includes Rate Limiting to prevent excessive API requests. A custom annotation @RateLimited is used to enforce request limits per endpoint.
+
+Example Usage:
+```java
+ @RateLimited
+    @GetMapping()
+    public ResponseEntity<ApiResponse<BookFetchResponse>> fetchBooks(
+            HttpServletRequest httpRequest,
+            @RequestParam(defaultValue = "false") boolean includeExtraData,
+            @ModelAttribute BookFetchRequest bookFetchRequest
+    ) {
+        BookFetchResponse response = bookService.findAll(bookFetchRequest);
+
+        return extraDataUtil.buildResponse(httpRequest, includeExtraData, response, HttpStatus.OK);
+    }
+```
+</p>
+
+### Extra Data in API Responses
+
+<p>This project includes an Extra Data Utility that allows API responses to include additional metadata when requested.</p>
+<h5>How it Works</h5>
+<ul>
+  <li>Users can pass ```?includeExtraData=true``` in API requests</li>
+  <li>Extra metadata includes:
+  <ul>
+    <li>TImestamp</li>
+    <li>Response size</li>
+    <li>Request ID</li>
+    <li>Server Info</li>
+    <li>API version</li>
+    <li>Client IP address</li>
+    <li>User-Agent</li>
+  </ul>
+  </li>
+</ul>
+Example Response with Extra Data:
+
+```json
+{
+  "status": 200,
+  "data": {
+    "id": 1,
+    "title": "Clean Code",
+    "Author":"Robert Cecil Martin"
+    "quantity":20
+  },
+  "extraData": {
+    "timestamp": "2025-03-19T12:34:56Z",
+    "responseSize": 256,
+    "requestId": "abc-123",
+    "serverInfo": "Library API Server v1.0",
+    "clientIp": "192.168.1.1",
+    "apiVersion": "v1",
+    "userAgent": "PostmanRuntime/7.29.0"
+  }
+}
+```
