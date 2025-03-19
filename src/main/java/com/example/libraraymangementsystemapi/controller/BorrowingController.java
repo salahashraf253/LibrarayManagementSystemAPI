@@ -8,12 +8,11 @@ import com.example.libraraymangementsystemapi.dto.response.ApiResponse;
 import com.example.libraraymangementsystemapi.dto.response.BorrowingFetchResponse;
 import com.example.libraraymangementsystemapi.dto.response.BorrowingResponse;
 import com.example.libraraymangementsystemapi.dto.response.ReturnBookResponse;
-import com.example.libraraymangementsystemapi.entity.Borrowing;
 import com.example.libraraymangementsystemapi.service.BorrowingService;
 import com.example.libraraymangementsystemapi.util.ExtraDataUtil;
 import com.example.libraraymangementsystemapi.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -23,12 +22,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/borrowings")
 @PreAuthorize("hasRole('BORROWER')")
+@AllArgsConstructor
 public class BorrowingController {
-    @Autowired
     private JwtUtil jwtUtil;
-    @Autowired
     private ExtraDataUtil extraDataUtil;
-    @Autowired
     private BorrowingService borrowingService;
 
     @GetMapping("/")

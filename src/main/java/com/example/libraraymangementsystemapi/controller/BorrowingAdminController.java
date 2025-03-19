@@ -6,6 +6,7 @@ import com.example.libraraymangementsystemapi.dto.response.BorrowingFetchRespons
 import com.example.libraraymangementsystemapi.service.BorrowingService;
 import com.example.libraraymangementsystemapi.util.ExtraDataUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/borrowings")
 @PreAuthorize("hasRole('ADMIN')")
+@AllArgsConstructor
 public class BorrowingAdminController {
-    @Autowired
     private BorrowingService borrowingService;
-    @Autowired
     private ExtraDataUtil extraDataUtil;
 
     @GetMapping("/overdue")
