@@ -4,13 +4,19 @@ import com.example.libraraymangementsystemapi.dto.request.BorrowingFetchRequest;
 import com.example.libraraymangementsystemapi.dto.response.ApiResponse;
 import com.example.libraraymangementsystemapi.dto.response.BorrowingFetchResponse;
 import com.example.libraraymangementsystemapi.service.BorrowingService;
+import com.example.libraraymangementsystemapi.service.ReportExportService;
 import com.example.libraraymangementsystemapi.util.ExtraDataUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/borrowings")
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class BorrowingAdminController {
     private BorrowingService borrowingService;
     private ExtraDataUtil extraDataUtil;
+    private ReportExportService reportExportService;
 
     @GetMapping("/overdue")
     public ResponseEntity<ApiResponse<BorrowingFetchResponse>> getBorrowedBooks(
@@ -50,4 +57,21 @@ public class BorrowingAdminController {
         BorrowingFetchResponse response = borrowingService.getActiveBorrowingsByBorrowerId(borrowerId, borrowingFetchRequest);
         return extraDataUtil.buildResponse(httpRequest, includeExtraData, response, HttpStatus.OK);
     }
+
+    @GetMapping("/report")
+    public ResponseEntity<ApiResponse<BorrowingFetchResponse>> getReport(
+            @ModelAttribute BorrowingFetchRequest borrowingFetchRequest,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+        BorrowingFetchResponse response = borrowingService.getReport(borrowingFetchRequest,startDate,endDate);
+        return ResponseEntity.ok(new ApiResponse<>(HttpStatus.OK.value(), response));
+    }
+    @GetMapping("/export")
+    public ResponseEntity<ByteArrayResource> exportReport(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
+            @RequestParam String format) throws IOException {
+        return reportExportService.exportReport(startDate, endDate, format);
+    }
+
 }
