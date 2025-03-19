@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -109,5 +108,14 @@ public class BorrowingService {
                 borrowingPage.getTotalElements(), borrowingPage.getSize()
         );
         return new BorrowingFetchResponse(borrowings, paginationData);
+    }
+    public List<BorrowingResponse> getBorrowingData(LocalDateTime startDate, LocalDateTime endDate) {
+        return borrowingRepository.findBorrowingsByDateRange(startDate,endDate)
+                .stream().map(borrowingMapper::sourceToDestination)
+                .toList();
+    }
+    public BorrowingFetchResponse getReport(BorrowingFetchRequest req,LocalDateTime startDate, LocalDateTime endDate){
+        Pageable pageable = buildPageable(req);
+        return fetchBorrowings(borrowingRepository.findPaginatedBorrowingsByDateRange(startDate,endDate,pageable));
     }
 }
