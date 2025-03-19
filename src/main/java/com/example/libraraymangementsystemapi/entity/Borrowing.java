@@ -1,6 +1,6 @@
 package com.example.libraraymangementsystemapi.entity;
 
-import com.example.libraraymangementsystemapi.entity.embeddedId.BorrowingId;
+import com.example.libraraymangementsystemapi.entity.embedded.BorrowingId;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

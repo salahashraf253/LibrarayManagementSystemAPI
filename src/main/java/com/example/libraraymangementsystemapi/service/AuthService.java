@@ -4,6 +4,7 @@ package com.example.libraraymangementsystemapi.service;
 import com.example.libraraymangementsystemapi.dto.request.LoginRequest;
 import com.example.libraraymangementsystemapi.dto.response.LoginResponse;
 import com.example.libraraymangementsystemapi.enums.Role;
+import com.example.libraraymangementsystemapi.exception.ResourceNotFoundException;
 import com.example.libraraymangementsystemapi.repository.AdminRepository;
 import com.example.libraraymangementsystemapi.repository.BorrowerRepository;
 import com.example.libraraymangementsystemapi.util.JwtUtil;
@@ -42,7 +43,7 @@ public class AuthService {
             role = Role.BORROWER;
             id = borrowerRepository.findIdByEmail(request.getEmail());
         } else {
-            throw new RuntimeException("User not found");
+            throw new ResourceNotFoundException("User not found");
         }
         String token = jwtUtil.generateToken(userDetails,id);
         return new LoginResponse(token, role);

@@ -1,6 +1,6 @@
 package com.example.libraraymangementsystemapi.config;
 
-import com.example.libraraymangementsystemapi.Resolvers.TokenArgumentResolver;
+import com.example.libraraymangementsystemapi.resolvers.TokenArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

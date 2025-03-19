@@ -32,10 +32,10 @@ public class Book {
     @Column(nullable = false)
     private int quantity;
 
-    public Book(String title,String author,String ISBN,String shelfLocation,int quantity){
+    public Book(String title,String author,String isbn,String shelfLocation,int quantity){
         this.title=title;
         this.author=author;
-        this.isbn =ISBN;
+        this.isbn =isbn;
         this.shelfLocation=shelfLocation;
         this.quantity=quantity;
     }

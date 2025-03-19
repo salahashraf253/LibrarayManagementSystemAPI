@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 public class BookService {
     private BookRepository bookRepository;
     private PaginationService paginationService;
+    private BookMapper bookMapper;
 
     private Book findBookById(Long id) {
         return bookRepository.findById(id)
@@ -30,7 +31,7 @@ public class BookService {
 
     public BookResponse getBook(Long id){
         Book book= findBookById(id);
-        return BookMapper.sourceToDestination(book);
+        return bookMapper.sourceToDestination(book);
     }
     public BookFetchResponse findAll(BookFetchRequest request) {
         Pageable pageable = paginationService.createPageable(request.getPage(), request.getSize(),
@@ -41,8 +42,8 @@ public class BookService {
 
         List<BookResponse> books = bookPage.getContent()
                 .stream()
-                .map(BookMapper::sourceToDestination)
-                .collect(Collectors.toList());
+                .map(bookMapper::sourceToDestination)
+                .toList();
         PaginationData paginationData = new PaginationData(
                 bookPage.getNumber(), bookPage.getTotalPages(),
                 bookPage.getTotalElements(), bookPage.getSize());
@@ -51,9 +52,9 @@ public class BookService {
     }
 
     public BookResponse saveBook(BookRequest bookRequest) {
-        Book bookToSave = BookMapper.destinationToSource(bookRequest);
+        Book bookToSave = bookMapper.destinationToSource(bookRequest);
         Book savedBook = bookRepository.save(bookToSave);
-        return BookMapper.sourceToDestination(savedBook);
+        return bookMapper.sourceToDestination(savedBook);
     }
 
     public void deleteBook(Long id) {

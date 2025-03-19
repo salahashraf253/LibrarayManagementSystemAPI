@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.config.rateLimit;
+package com.example.libraraymangementsystemapi.config.ratelimit;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

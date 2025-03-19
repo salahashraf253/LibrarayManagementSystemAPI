@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.Resolvers;
+package com.example.libraraymangementsystemapi.resolvers;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
