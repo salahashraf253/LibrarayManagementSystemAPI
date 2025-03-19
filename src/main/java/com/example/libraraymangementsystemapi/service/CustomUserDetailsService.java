@@ -25,11 +25,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Admin> admin = adminRepository.findByEmail(email);
         if (admin.isPresent()) {
-            return (UserDetails) admin.get();
+            return admin.get();
         }
         Optional<Borrower> borrower = borrowerRepository.findByEmail(email);
         if (borrower.isPresent()) {
-            return (UserDetails) borrower.get();
+            return borrower.get();
         }
         throw new UsernameNotFoundException("User not found with email: " + email);
     }
