@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.entity.embeddedId;
+package com.example.libraraymangementsystemapi.entity.embedded;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;

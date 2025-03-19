@@ -1,7 +1,7 @@
 package com.example.libraraymangementsystemapi.repository;
 
 import com.example.libraraymangementsystemapi.entity.Borrowing;
-import com.example.libraraymangementsystemapi.entity.embeddedId.BorrowingId;
+import com.example.libraraymangementsystemapi.entity.embedded.BorrowingId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

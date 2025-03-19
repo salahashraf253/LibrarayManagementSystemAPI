@@ -1,6 +1,6 @@
 package com.example.libraraymangementsystemapi.controller;
 
-import com.example.libraraymangementsystemapi.config.rateLimit.RateLimited;
+import com.example.libraraymangementsystemapi.config.ratelimit.RateLimited;
 import com.example.libraraymangementsystemapi.dto.request.BookFetchRequest;
 import com.example.libraraymangementsystemapi.dto.request.BookRequest;
 import com.example.libraraymangementsystemapi.dto.response.ApiResponse;

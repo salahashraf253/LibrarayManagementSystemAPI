@@ -1,4 +1,4 @@
-package com.example.libraraymangementsystemapi.Resolvers;
+package com.example.libraraymangementsystemapi.resolvers;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
