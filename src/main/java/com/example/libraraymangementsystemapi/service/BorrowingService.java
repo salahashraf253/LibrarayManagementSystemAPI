@@ -11,7 +11,7 @@ import com.example.libraraymangementsystemapi.dto.response.ReturnBookResponse;
 import com.example.libraraymangementsystemapi.entity.Book;
 import com.example.libraraymangementsystemapi.entity.Borrower;
 import com.example.libraraymangementsystemapi.entity.Borrowing;
-import com.example.libraraymangementsystemapi.entity.embeddedId.BorrowingId;
+import com.example.libraraymangementsystemapi.entity.embedded.BorrowingId;
 import com.example.libraraymangementsystemapi.repository.BookRepository;
 import com.example.libraraymangementsystemapi.repository.BorrowerRepository;
 import com.example.libraraymangementsystemapi.repository.BorrowingRepository;
@@ -102,7 +102,7 @@ public class BorrowingService {
     private BorrowingFetchResponse fetchBorrowings(Page<Borrowing> borrowingPage) {
         List<BorrowingResponse> borrowings = borrowingPage.getContent().stream()
                 .map(borrowingMapper::sourceToDestination)
-                .collect(Collectors.toList());
+                .toList();
 
         PaginationData paginationData = new PaginationData(
                 borrowingPage.getNumber(), borrowingPage.getTotalPages(),
