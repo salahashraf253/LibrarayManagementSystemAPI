@@ -1,7 +1,8 @@
 # Library Management System API
 ## Introduction
 ### This is a RESTful API for a Library Management System built using Spring Boot. It allows users to register as borrowers or admins and perform actions related to book management and borrowing. 
-
+## Entity Relationship Diagram (ERD)
+![ERD](https://github.com/salahashraf253/LibrarayMangementSystemAPI/blob/feat/documentation/ERD.png)
 ## Features
 
 - Authentication & Authorization (JWT-based Security)
