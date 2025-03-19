@@ -1,6 +1,6 @@
 package com.example.libraraymangementsystemapi.service;
 
-import com.example.libraraymangementsystemapi.Mappers.UserMapper;
+import com.example.libraraymangementsystemapi.mappers.UserMapper;
 import com.example.libraraymangementsystemapi.dto.request.RegistrationRequest;
 import com.example.libraraymangementsystemapi.dto.response.RegistrationResponse;
 import com.example.libraraymangementsystemapi.entity.Admin;
