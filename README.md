@@ -14,6 +14,7 @@
 - Rate Limiting (Prevent excessive API requests)
 - Extra Data in API Responses (Optional metadata for debugging & analytics)
 - Swagger API Documentation (Interactive API exploration)
+- Docker (Containerized deployment)
 
 
 ## API Documentation
@@ -77,6 +78,7 @@
   <li>Lombok (Reduces Boilerplate Code)</li>
   <li>SonarQube (Static Code Analysis & Quality Assurance)</li>
 <li>Swagger UI (API Documentation & Testing)</li>
+    <li>Docker (Containerized  Deployment)</li>
 </ul>
 
 ### Rate Limiting
