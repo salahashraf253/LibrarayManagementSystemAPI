@@ -118,15 +118,6 @@ This project includes an Extra Data Utility that allows API responses to include
   </ul>
   </li>
 
-  ### Swagger API Documentation
-  Swagger UI is available for interactive API testing and documentation.
-  #### Acessing Swagger UI
-  - Open a browser and navigate to:
-    `http://localhost:8080/swagger-ui.html`
-  - Explore and test API endpoints directly from the interface.
-  - OpenAPI JSON documentation can be accessed at:
-    `http://localhost:8080/v3/api-docs`
-    
 <!-- </ul> -->
 Example Response with Extra Data:
 
@@ -150,3 +141,13 @@ Example Response with Extra Data:
   }
 }
 ```
+
+### Swagger API Documentation
+Swagger UI is available for interactive API testing and documentation.
+#### Acessing Swagger UI
+- Open a browser and navigate to:
+      `http://localhost:8080/swagger-ui.html`
+- Explore and test API endpoints directly from the interface.
+ - OpenAPI JSON documentation can be accessed at:
+    `http://localhost:8080/v3/api-docs`
+    
